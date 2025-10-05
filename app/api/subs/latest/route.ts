@@ -33,10 +33,10 @@ export async function GET() {
 
     const sorted = latestSubData
       .filter((s) => s.data !== null)
-      .sort((a, b) => (b.data?.totalSubs || 0) - (a.data?.totalSubs || 0))
+      .sort((a, b) => ((b.data as any)?.totalSubs || 0) - ((a.data as any)?.totalSubs || 0))
 
     const totalCombinedSubs = sorted.reduce(
-      (sum, s) => sum + (s.data?.totalSubs || 0),
+      (sum, s) => sum + ((s.data as any)?.totalSubs || 0),
       0
     )
 
