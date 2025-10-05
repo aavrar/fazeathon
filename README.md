@@ -4,7 +4,7 @@ A real-time web application to track the Faze Clan subathon with live stats, pre
 
 ## Features
 
-- **Live Subscriber Tracking**: Real-time sub counts updated every 5 minutes via TwitchTracker scraping
+- **Live Subscriber Tracking**: Real-time sub counts updated every minute via TwitchTracker scraping
 - **Anonymous User System**: No authentication required - users tracked via localStorage
 - **Team Selection**: Choose your champion streamer
 - **Daily Predictions**: Predict which streamer will gain the most subs
@@ -100,14 +100,21 @@ vercel
 vercel --prod
 ```
 
-### Step 3: Verify Cron Jobs
+### Step 3: Set Up GitHub Actions (Cron Jobs)
 
-The app uses two cron jobs configured in `vercel.json`:
+The app uses GitHub Actions for cron jobs (Vercel free tier only allows daily crons).
 
-1. **Scraper** (every 5 minutes): `/api/cron/scrape`
-2. **Scorer** (midnight daily): `/api/cron/score`
+1. Push your code to GitHub
+2. Go to your GitHub repository settings → Secrets and variables → Actions
+3. Add repository secrets:
+   - `VERCEL_URL`: Your Vercel deployment URL (e.g., `https://your-app.vercel.app`)
+   - `CRON_SECRET`: Same secret you used in Vercel
 
-Verify cron jobs are running in Vercel dashboard.
+GitHub Actions will automatically:
+- **Scraper**: Run every minute (`.github/workflows/scraper.yml`)
+- **Scorer**: Run daily at midnight UTC (`.github/workflows/scorer.yml`)
+
+You can manually trigger jobs from the "Actions" tab in your GitHub repo.
 
 ## Gamification System
 

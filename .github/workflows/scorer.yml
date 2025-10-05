@@ -1,0 +1,16 @@
+name: Score Predictions
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Midnight UTC daily
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Scorer
+        run: |
+          curl -X GET "${{ secrets.VERCEL_URL }}/api/cron/score" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            --max-time 60
