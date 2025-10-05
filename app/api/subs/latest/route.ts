@@ -44,7 +44,7 @@ export async function GET() {
       success: true,
       streamers: sorted,
       totalCombinedSubs,
-      lastUpdated: sorted[0]?.data?.timestamp || new Date(),
+      lastUpdated: (sorted[0]?.data as any)?.timestamp || new Date(),
     })
   } catch (error) {
     console.error('Get latest subs error:', error)
