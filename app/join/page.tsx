@@ -101,7 +101,7 @@ export default function JoinPage() {
                 }`}
                 style={{
                   borderLeft: `4px solid ${streamer.color}`,
-                  ringColor: selectedTeam === streamer._id ? streamer.color : undefined,
+                  ['--tw-ring-color' as any]: selectedTeam === streamer._id ? streamer.color : undefined,
                 }}
                 onClick={() => setSelectedTeam(streamer._id)}
               >

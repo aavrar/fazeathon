@@ -261,7 +261,7 @@ export default function PredictPage() {
                           }`}
                           style={{
                             borderColor: selectedWinner === streamer._id ? streamer.color : undefined,
-                            ringColor: selectedWinner === streamer._id ? streamer.color : undefined,
+                            ['--tw-ring-color' as any]: selectedWinner === streamer._id ? streamer.color : undefined,
                           }}
                         >
                           <p className="font-semibold">{streamer.name}</p>
